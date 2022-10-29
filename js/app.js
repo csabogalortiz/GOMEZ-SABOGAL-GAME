@@ -54,7 +54,7 @@ const app = {
     createObstacles() {
         console.log('hola8')
         this.obstacles.push(
-            new Obstacle(this.ctx, 100, 0, 200, 26, 5, this.canvasSize),
+            new Obstacle(this.ctx, 50, 0, 200, 26, 5, this.canvasSize),
             new Obstacle(this.ctx, 250, 100, 60, 30, 14, this.canvasSize),
             new Obstacle(this.ctx, 300, 200, 60, 30, 14, this.canvasSize),
         )

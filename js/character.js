@@ -10,11 +10,7 @@ class Character {
             x: 200,
             y: 700
         }
-        this.characterSpeed =
-        {
-            x: 200,
-            y: 500
-        }
+        this.characterSpeed += 0.9;
         // this.characterPhysics = { gravity: .4 }
         this.characterImage = "./images/ball.png"
         this.imageInstance = undefined
@@ -41,6 +37,8 @@ class Character {
     move() {
         console.log('chao')
         this.setEventHandlers()
+        // this.jump 
+        
     }
 
     setEventHandlers() {
@@ -55,6 +53,10 @@ class Character {
                     break;
             }
         }
+    }
+
+    jump() {
+        characterPos.y += characterSpeed;
     }
 }
 
@@ -81,8 +83,7 @@ class Character {
     // this.characterSpeed.y += this.characterPhysics.gravity
     // this.characterPos.y += this.characterSpeed.y
 
-    //     this.characterSpeed += 0.2
-    //     characterPos.y += characterSpeed;
+      
     // }
 
 

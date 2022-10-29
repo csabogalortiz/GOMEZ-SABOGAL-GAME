@@ -1,5 +1,5 @@
 class Obstacle {
-    constructor(ctx, obstaclePosX, obstaclePosY, obstacleWidth, obstacleHeight, obstacleSpeed, canvasSize) {
+    constructor(ctx, obstaclePosX, obstaclePosY, obstacleSpeed, canvasSize) {
         this.ctx = ctx
         this.obstacleSize = {
             w: 100,
@@ -25,7 +25,7 @@ class Obstacle {
     }
 
     move() {
-        this.obstaclePos.y += 5
+        this.obstaclePos.y += 2
     }
 
 }
