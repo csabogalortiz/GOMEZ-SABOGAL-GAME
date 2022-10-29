@@ -10,14 +10,17 @@ const app = {
         w: undefined, h: undefined
     },
     framesCounter: 0,
-    background: undefined,
     character: undefined,
+    background: undefined,
+
 
     init() {
         console.log('hola')
         this.setDimensions()
         this.setContext()
         // this.createObstacles()
+
+        this.createBackground()
         this.createCharacter()
         // this.setEventHandlers()
         this.start()
@@ -43,18 +46,18 @@ const app = {
         this.character = new Character(this.ctx, this.canvasSize)
     },
 
-    // drawSquare() {
-    //     console.log('hola4')
-    //     this.ctx.fillStyle = '#adbae3'
-    //     this.ctx.fillRect(0, 0, 500, 800)
-    // },
+    createBackground() {
+        console.log('hola6')
+        this.background = new Background(this.ctx, this.canvasSize)
+    },
 
     start() {
 
         setInterval(() => {
             this.clearAll()
+
+            this.background.draw()
             this.character.draw()
-            // this.drawSquare()
             this.drawAll()
             this.framesCounter++
             // if (this.framesCounter % 60 === 0) {
@@ -71,12 +74,6 @@ const app = {
 
     //     )
     // },
-
-    // createCharacter() {
-    //     this.imageInstance = new Image()
-    //     this.imageInstance.src = this.character.image
-    // },
-
 
 
     // setEventHandlers() {
@@ -99,8 +96,11 @@ const app = {
 
     drawAll() {
         console.log('hola1')
+
+        this.createBackground()
         this.createCharacter()
-        this.drawSquare()
+
+        // this.drawSquare()
         // this.obstacles.forEach(obstacle => obstacle.draw())
         // this.obstacles.forEach(obstacle => obstacle.move())
     },

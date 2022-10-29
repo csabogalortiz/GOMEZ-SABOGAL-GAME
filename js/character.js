@@ -8,7 +8,7 @@ class Character {
         }
         this.characterPos = {
             x: 200,
-            y: 800
+            y: 500
         }
         // this.characterSpeed = characterSpeed
         this.characterImage = "./images/ball.png"
@@ -21,7 +21,6 @@ class Character {
         this.imageInstance = new Image()
         this.imageInstance.src = this.characterImage
     }
-
 
     draw() {
         this.ctx.drawImage(
