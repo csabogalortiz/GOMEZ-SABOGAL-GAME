@@ -3,17 +3,23 @@ class Character {
     constructor(ctx, canvasSize) {
         this.ctx = ctx
         this.characterSize = {
-            w: 200,
-            h: 200
+            w: 100,
+            h: 100
         }
         this.characterPos = {
             x: 200,
+            y: 700
+        }
+        this.characterSpeed =
+        {
+            x: 200,
             y: 500
         }
-        // this.characterSpeed = characterSpeed
+        // this.characterPhysics = { gravity: .4 }
         this.characterImage = "./images/ball.png"
         this.imageInstance = undefined
         this.canvasSize = canvasSize
+        this.move()
         this.init()
     }
 
@@ -31,11 +37,55 @@ class Character {
             this.characterSize.h
         )
     }
-    // Character Jump 
-    // move() {
-    //     this.characterSpeed += 0.2
-    //     characterPosY += characterSpeed;
+
+    move() {
+        console.log('chao')
+        this.setEventHandlers()
+    }
+
+    setEventHandlers() {
+        console.log('chao2')
+        document.onkeydown = event => {
+            switch (event.key) {
+                case 'ArrowRight':
+                    this.characterPos.x += 50
+                    break;
+                case 'ArrowLeft':
+                    this.characterPos.x -= 50
+                    break;
+            }
+        }
+    }
+}
+
+    // Character Jump
+
+//     if (this.characterPos.y < this.characterPos.y0) {   // Está saltando!
+    //         this.characterPos.y += this.characterSpeed.y;
+    //         this.characterSpeed.y += this.characterPhysics.gravity;
+    //     } else {
+    //         this.characterPos.y = this.characterPos.y0;
+    //         this.characterSpeed.y = 1;
+    //     }
     // }
 
-}
+    // if (this.characterPos.y >= this.canvasSize.h - this.characterSize.h) {
+    //     this.characterSpeed.y *= -1
+    // }
+
+    // if (this.characterPos.x >= this.canvasSize.w - this.characterSize.w) {
+    //     this.characterSpeed.x *= -1
+    // }
+
+    // this.characterPos.x += this.characterSpeed.x
+    // this.characterSpeed.y += this.characterPhysics.gravity
+    // this.characterPos.y += this.characterSpeed.y
+
+    //     this.characterSpeed += 0.2
+    //     characterPos.y += characterSpeed;
+    // }
+
+
+
+
 

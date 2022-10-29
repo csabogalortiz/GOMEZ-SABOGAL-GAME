@@ -7,7 +7,6 @@ class Background {
             w: 500,
             h: 700
         }
-
         this.backgroundPos = {
             x: 0,
             y: 0
@@ -34,8 +33,8 @@ class Background {
 
             this.ctx.drawImage(
                 this.imageInstance,
-                this.backgroundPos.x + this.backgroundSize.w,
-                this.backgroundPos.y,
+                this.backgroundPos.x,
+                this.backgroundPos.y + this.backgroundSize.h,
                 this.backgroundSize.w,
                 this.backgroundSize.h
             )
@@ -45,8 +44,8 @@ class Background {
 
 
 // move() {
-//     if (this.posX <= -this.width) {
-//         this.posX = 0;
+//     if (this.posY <= -this.width) {
+//         this.posY = 0;
 //     }
-//     this.posX -= this.velX;
+//     this.posY -= this.velY;
 // }

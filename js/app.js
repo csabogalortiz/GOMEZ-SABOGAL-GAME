@@ -19,10 +19,9 @@ const app = {
         this.setDimensions()
         this.setContext()
         // this.createObstacles()
-
         this.createBackground()
         this.createCharacter()
-        // this.setEventHandlers()
+        this.moveAll()
         this.start()
     },
 
@@ -54,10 +53,8 @@ const app = {
     start() {
 
         setInterval(() => {
+            this.moveAll()
             this.clearAll()
-
-            this.background.draw()
-            this.character.draw()
             this.drawAll()
             this.framesCounter++
             // if (this.framesCounter % 60 === 0) {
@@ -74,31 +71,19 @@ const app = {
 
     //     )
     // },
-
-
-    // setEventHandlers() {
-    //     document.onkeydown = event => {
-    //         switch (event.key) {
-    //             case 'ArrowRight':
-    //                 this.carDetails.pos.x += 10
-    //                 break;
-    //             case 'ArrowLeft':
-    //                 this.carDetails.pos.x -= 10
-    //                 break;
-    //         }
-    //     }
-    // },
-
+    moveAll() {
+        // console.log('hola7')
+        this.character.move()
+    },
 
     clearAll() {
         this.ctx.clearRect(0, 0, this.canvasSize.w, this.canvasSize.h)
     },
 
     drawAll() {
-        console.log('hola1')
-
-        this.createBackground()
-        this.createCharacter()
+        // console.log('hola1')
+        this.background.draw()
+        this.character.draw()
 
         // this.drawSquare()
         // this.obstacles.forEach(obstacle => obstacle.draw())
