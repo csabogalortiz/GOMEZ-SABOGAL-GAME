@@ -1,14 +1,13 @@
 class Obstacle {
-
     constructor(ctx, obstaclePosX, obstaclePosY, obstacleWidth, obstacleHeight, obstacleSpeed, canvasSize) {
         this.ctx = ctx
         this.obstacleSize = {
-            w: obstacleWidth,
-            h: obstacleHeight
+            w: 100,
+            h: 30
         }
 
-
         this.obstaclePos = {
+
             x: obstaclePosX,
             y: obstaclePosY
 
@@ -21,8 +20,8 @@ class Obstacle {
 
     draw() {
         this.ctx.fillStyle = 'purple'
-        this.ctx.fillRect(this.obstaclePos.x, this.obstaclePos.y, this.obstacleSize.w, this.obstacleSize.h)
 
+        this.ctx.fillRect(this.obstaclePos.x, this.obstaclePos.y, this.obstacleSize.w, this.obstacleSize.h)
     }
 
     move() {

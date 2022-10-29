@@ -5,7 +5,7 @@ const app = {
     author: 'Juliana Gomez & Catalina Sabogal',
     description: 'Final Project',
     ctx: undefined,
-    // obstacles: [],
+    obstacles: [],
     canvasSize: {
         w: undefined, h: undefined
     },
@@ -20,6 +20,7 @@ const app = {
         this.setContext()
         // this.createObstacles()
         this.createBackground()
+        this.createObstacles()
         this.createCharacter()
         this.moveAll()
         this.start()
@@ -50,6 +51,15 @@ const app = {
         this.background = new Background(this.ctx, this.canvasSize)
     },
 
+    createObstacles() {
+        console.log('hola8')
+        this.obstacles.push(
+            new Obstacle(this.ctx, 100, 0, 200, 26, 5, this.canvasSize),
+            new Obstacle(this.ctx, 250, 100, 60, 30, 14, this.canvasSize),
+            new Obstacle(this.ctx, 300, 200, 60, 30, 14, this.canvasSize),
+        )
+    },
+
     start() {
 
         setInterval(() => {
@@ -57,20 +67,13 @@ const app = {
             this.clearAll()
             this.drawAll()
             this.framesCounter++
-            // if (this.framesCounter % 60 === 0) {
-            //     this.createObstacles()
-            // }
+            if (this.framesCounter % 60 === 0) {
+                this.createObstacles()
+            }
         }, 50)
     },
 
-    // createObstacles() {
-    //     this.obstacles.push(
-    //         new Obstacle(this.ctx, 100, 0, 200, 26, 5, this.canvasSize),
-    //         new Obstacle(this.ctx, 250, 100, 60, 30, 14, this.canvasSize),
-    //         new Obstacle(this.ctx, 300, 200, 60, 30, 14, this.canvasSize),
 
-    //     )
-    // },
     moveAll() {
         // console.log('hola7')
         this.character.move()
@@ -83,11 +86,9 @@ const app = {
     drawAll() {
         // console.log('hola1')
         this.background.draw()
+        this.obstacles.forEach(obstacle => obstacle.draw())
+        this.obstacles.forEach(obstacle => obstacle.move())
         this.character.draw()
-
-        // this.drawSquare()
-        // this.obstacles.forEach(obstacle => obstacle.draw())
-        // this.obstacles.forEach(obstacle => obstacle.move())
     },
 
 }
