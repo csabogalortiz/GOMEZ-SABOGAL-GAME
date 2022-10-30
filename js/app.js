@@ -22,17 +22,14 @@ const app = {
         this.createBackground()
         this.createObstacles()
         this.createCharacter()
-        this.moveAll()
         this.start()
     },
 
     setContext() {
-        console.log('hola2')
         this.ctx = document.querySelector('#myCanvas').getContext('2d')
     },
 
     setDimensions() {
-        console.log('hola3')
         this.canvasSize = {
             w: 500,
             h: 900,
@@ -42,42 +39,41 @@ const app = {
     },
 
     createCharacter() {
-        console.log('hola5')
         this.character = new Character(this.ctx, this.canvasSize)
     },
 
     createBackground() {
-        console.log('hola6')
         this.background = new Background(this.ctx, this.canvasSize)
     },
 
+    // constructor(ctx, obstaclePosX, obstaclePosY, obstacleSizeW, obstacleSizeH, obstacleSpeed, canvasSize) {
     createObstacles() {
-        console.log('hola8')
         this.obstacles.push(
-            new Obstacle(this.ctx, 50, 0, 200, 26, 5, this.canvasSize),
-            new Obstacle(this.ctx, 250, 100, 60, 30, 14, this.canvasSize),
-            new Obstacle(this.ctx, 300, 200, 60, 30, 14, this.canvasSize),
+            new Obstacle(this.ctx, 100, 300, 150, 40, 200, 26, 0, this.canvasSize),
+            new Obstacle(this.ctx, 400, 400, 150, 40, 60, 30, 0, this.canvasSize),
+            // new Obstacle(this.ctx, 300, 200, 70, 40, 60, 30, 14, this.canvasSize),
         )
     },
 
     start() {
 
         setInterval(() => {
-            this.moveAll()
+
             this.clearAll()
+
             this.drawAll()
-            this.framesCounter++
-            if (this.framesCounter % 60 === 0) {
-                this.createObstacles()
-            }
+            // this.framesCounter++
+            // if (this.framesCounter % 60 === 0) {
+            //     this.createObstacles()
+            // }
         }, 50)
     },
 
 
-    moveAll() {
+    /* moveAll() {
         // console.log('hola7')
         this.character.move()
-    },
+    }, */
 
     clearAll() {
         this.ctx.clearRect(0, 0, this.canvasSize.w, this.canvasSize.h)
