@@ -66,6 +66,9 @@ const app = {
             // if (this.framesCounter % 60 === 0) {
             //     this.createObstacles()
             // }
+            this.obstacles.forEach(element => {
+                this.checkCollision(element)
+            })
         }, 50)
     },
 
@@ -87,7 +90,22 @@ const app = {
         this.character.draw()
     },
 
+
+    checkCollision(element) {
+        if (this.character.characterPos.y + this.character.characterSize.h <= element.obstaclePos.y && this.character.characterPos.x < element.obstaclePos.x + element.obstacleSize.w &&
+            this.character.characterPos.x + this.character.characterSize.w > element.obstaclePos.x) {
+            // alert('ALERTA')
+            element.obstaclePos.y += 5;
+        }
+
+    }
+
 }
+
+
+
+
+
 
 
 
