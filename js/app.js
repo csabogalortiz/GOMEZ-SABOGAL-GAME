@@ -12,6 +12,7 @@ const app = {
     framesCounter: 0,
     character: undefined,
     background: undefined,
+    score: undefined,
 
 
     init() {
@@ -62,13 +63,13 @@ const app = {
             this.clearAll()
 
             this.drawAll()
-            // this.framesCounter++
-            // if (this.framesCounter % 60 === 0) {
-            //     this.createObstacles()
-            // }
+            this.framesCounter++
             this.obstacles.forEach(element => {
                 this.checkCollision(element)
             })
+            if (this.framesCounter % 100 === 0) {
+                this.createObstacles()
+            }
         }, 50)
     },
 
@@ -93,14 +94,42 @@ const app = {
 
     checkCollision(element) {
         if (this.character.characterPos.y + this.character.characterSize.h <= element.obstaclePos.y && this.character.characterPos.x < element.obstaclePos.x + element.obstacleSize.w &&
-            this.character.characterPos.x + this.character.characterSize.w > element.obstaclePos.x) {
-            // alert('ALERTA')
+            this.character.characterPos.x + this.character.characterSize.w > element.obstaclePos.x
+            // this.character.characterPos.y + this.character.characterSize.h < element.obstaclePos.y + element.obstacleSize.h &&
+            // this.character.characterPos.y + this.character.characterSize.h > element.obstaclePos.y
+        ) {
+
+            // this.character.velCharacter.y *= -1
             element.obstaclePos.y += 5;
+            this.character.characterPos.y === element.obstaclePos.y
+            // this.character.velCharacter.y += this.gravity
+            // this.character.characterPos.y += this.character.velCharacter.y
         }
+    },
+
+    drawScore() {
+        let score = 0;
 
     }
 
+
+
+    // doodlerY + doodlerSize < plat.yPos + plat.height &&
+    // doodlerY + doodlerSize > plat.yPos &&
+
+    // element.obstaclePos.y += 5;
+
+    // this.obstacle.obstaclePos.y -= 5;
+    // alert('ALERTA')
+    // element.obstaclePos.y += 5;
+    // this.character.characterPos.y -= 5;
+    // this.character.characterPos.y += 5;
+
 }
+
+
+
+// doodlerY + doodlerSize < plat.yPos + plat.height &&
 
 
 

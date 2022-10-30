@@ -50,7 +50,6 @@ class Character {
     }
 
     setEventHandlers() {
-        console.log('chao2')
         document.onkeydown = event => {
             switch (event.key) {
                 case 'ArrowRight':
