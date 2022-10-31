@@ -72,7 +72,7 @@ const app = {
             this.drawAll()
             this.framesCounter++
 
-            if (this.framesCounter % 60 === 0) {
+            if (this.framesCounter % 50 === 0) {
                 this.createObstacles()
             }
         }, 50)
@@ -101,20 +101,22 @@ const app = {
 
     checkCollision() {
         this.obstacles.forEach((element) => {
-            if (this.character.characterPos.y + this.character.characterSize.h < element.obstaclePos.y &&
+            if (this.character.characterPos.y + this.character.characterSize.h > element.obstaclePos.y &&
                 this.character.characterPos.y < element.obstaclePos.y + element.obstacleSize.h &&
                 this.character.characterPos.x < element.obstaclePos.x + element.obstacleSize.w &&
                 this.character.characterPos.x + this.character.characterSize.w > element.obstaclePos.x
             ) {
-                // element.obstaclePos.y += 5;
+
                 this.character.velCharacter.y *= -1
+
+                // this.character.characterPos.y = element.obstaclePos.y
+
                 this.framesCounter++
 
                 if (this.framesCounter % 50 === 0) {
                     this.createObstacles()
                 }
                 // element.obstaclePos.y += 5;
-                // this.character.characterPos.y = element.obstaclePos.y
                 // this.character.velCharacter.y -= 10
                 // this.character.characterPos.y += this.character.velCharacter.y
             }
