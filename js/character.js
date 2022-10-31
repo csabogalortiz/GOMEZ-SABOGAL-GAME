@@ -9,7 +9,7 @@ class Character {
         }
         this.characterPos = {
             x: 240,
-            y: this.canvasSize.h - this.characterSize.h - 80
+            y: this.canvasSize.h - this.characterSize.h - 600
         }
         // this.posFloor = 100
         

@@ -63,14 +63,13 @@ const app = {
     createInitialObstacles() {
         console.log('Maria juliana')
         this.initialObstacles.push(
+            new Obstacle(this.ctx, 240, 400, 200, 20, 60, this.canvasSize),
+            new Obstacle(this.ctx, 50, 300, 300, 20, 60, this.canvasSize),
+            // new Obstacle(this.ctx, 100, 200, 400, 20, 60, this.canvasSize),
 
-            new Obstacle(this.ctx, 240, 400, 100, 80, 60, this.canvasSize),
-            new Obstacle(this.ctx, 240, 500, 100, 80, 60, this.canvasSize),
-            new Obstacle(this.ctx, 240, 600, 100, 80, 60, this.canvasSize)
         )
 
     },
-
 
     randomPosition() {
         return Math.floor(Math.random() * this.canvasSize.w - 100)
@@ -84,7 +83,6 @@ const app = {
 
             this.drawAll()
             this.framesCounter++
-
             if (this.framesCounter % 20 === 0) {
                 this.createObstacles()
             }
@@ -121,25 +119,41 @@ const app = {
         this.obstacles.forEach((element) => {
             if (this.character.characterPos.y + this.character.characterSize.h > element.obstaclePos.y &&
                 this.character.characterPos.y < element.obstaclePos.y + element.obstacleSize.h &&
-                this.character.characterPos.x + this.character.characterSize.w >= element.obstaclePos.x &&
+                this.character.characterPos.x + this.character.characterSize.w > element.obstaclePos.x &&
                 this.character.characterPos.x < element.obstaclePos.x + element.obstacleSize.w
 
             ) {
 
                 this.character.velCharacter.y *= -1
 
-                this.framesCounter++
-
-                if (this.framesCounter % 50 === 0) {
-                    this.createObstacles()
-                }
-                // this.character.characterPos.y = element.obstaclePos.y
-                // element.obstaclePos.y += 5;
-                // this.character.velCharacter.y -= 10
-                // this.character.characterPos.y += this.character.velCharacter.y
             }
-            // console.log(element.obstaclePos.y)
         })
+
+        this.initialObstacles.forEach((element) => {
+            if (this.character.characterPos.y + this.character.characterSize.h > element.obstaclePos.y &&
+                this.character.characterPos.y < element.obstaclePos.y + element.obstacleSize.h &&
+                this.character.characterPos.x + this.character.characterSize.w > element.obstaclePos.x &&
+                this.character.characterPos.x < element.obstaclePos.x + element.obstacleSize.w
+
+            ) {
+
+                this.character.velCharacter.y *= -1
+
+            }
+        })
+
+        // this.framesCounter++
+
+        // if (this.framesCounter % 50 === 0) {
+        //     this.createObstacles()
+        // }
+        // this.character.characterPos.y = element.obstaclePos.y
+        // element.obstaclePos.y += 5;
+        // this.character.velCharacter.y -= 10
+        // this.character.characterPos.y += this.character.velCharacter.y
+
+        // console.log(element.obstaclePos.y)
+
     },
 
     drawScore() {
