@@ -72,7 +72,7 @@ const app = {
             this.drawAll()
             this.framesCounter++
 
-            if (this.framesCounter % 50 === 0) {
+            if (this.framesCounter % 60 === 0) {
                 this.createObstacles()
             }
         }, 50)
@@ -106,7 +106,7 @@ const app = {
                 this.character.characterPos.x < element.obstaclePos.x + element.obstacleSize.w &&
                 this.character.characterPos.x + this.character.characterSize.w > element.obstaclePos.x
             ) {
-                element.obstaclePos.y += 5;
+                // element.obstaclePos.y += 5;
                 this.character.velCharacter.y *= -1
                 this.framesCounter++
 
