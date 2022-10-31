@@ -4,12 +4,12 @@ class Character {
         this.ctx = ctx
         this.canvasSize = canvasSize
         this.characterSize = {
-            w: 100,
-            h: 100
+            w: 30,
+            h: 30
         }
         this.characterPos = {
             x: 200,
-            y: this.canvasSize.h - this.characterSize.h - 40
+            y: this.canvasSize.h - this.characterSize.h - 20
         }
         this.posFloor = 300
         

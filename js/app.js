@@ -49,11 +49,18 @@ const app = {
 
     // constructor(ctx, obstaclePosX, obstaclePosY, obstacleSizeW, obstacleSizeH, obstacleSpeed, canvasSize) {
     createObstacles() {
+        let posX = this.randomPosition()
+        console.log(posX)
         this.obstacles.push(
-            new Obstacle(this.ctx, 100, 300, 150, 40, 200, 26, 0, this.canvasSize),
-            new Obstacle(this.ctx, 400, 400, 150, 40, 60, 30, 0, this.canvasSize),
-            // new Obstacle(this.ctx, 300, 200, 70, 40, 60, 30, 14, this.canvasSize),
+            // new Obstacle(this.ctx, 100, 300, 150, 40, 200, 26, 0, this.canvasSize),
+            // new Obstacle(this.ctx, 400, 400, 150, 40, 60, 30, 0, this.canvasSize),
+            new Obstacle(this.ctx, posX, 0, 100, 20, 60, this.canvasSize),
         )
+    },
+
+
+    randomPosition() {
+        return Math.floor(Math.random() * this.canvasSize.w - 100)
     },
 
     start() {
@@ -64,10 +71,8 @@ const app = {
 
             this.drawAll()
             this.framesCounter++
-            this.obstacles.forEach(element => {
-                this.checkCollision(element)
-            })
-            if (this.framesCounter % 100 === 0) {
+
+            if (this.framesCounter % 50 === 0) {
                 this.createObstacles()
             }
         }, 50)
@@ -88,23 +93,33 @@ const app = {
         this.background.draw()
         this.obstacles.forEach(obstacle => obstacle.draw())
         this.obstacles.forEach(obstacle => obstacle.move())
+
         this.character.draw()
+        this.checkCollision()
     },
 
 
-    checkCollision(element) {
-        if (this.character.characterPos.y + this.character.characterSize.h <= element.obstaclePos.y && this.character.characterPos.x < element.obstaclePos.x + element.obstacleSize.w &&
-            this.character.characterPos.x + this.character.characterSize.w > element.obstaclePos.x
-            // this.character.characterPos.y + this.character.characterSize.h < element.obstaclePos.y + element.obstacleSize.h &&
-            // this.character.characterPos.y + this.character.characterSize.h > element.obstaclePos.y
-        ) {
+    checkCollision() {
+        this.obstacles.forEach((element) => {
+            if (this.character.characterPos.y + this.character.characterSize.h < element.obstaclePos.y &&
+                this.character.characterPos.y < element.obstaclePos.y + element.obstacleSize.h &&
+                this.character.characterPos.x < element.obstaclePos.x + element.obstacleSize.w &&
+                this.character.characterPos.x + this.character.characterSize.w > element.obstaclePos.x
+            ) {
+                element.obstaclePos.y += 5;
+                this.character.velCharacter.y *= -1
+                this.framesCounter++
 
-            // this.character.velCharacter.y *= -1
-            element.obstaclePos.y += 5;
-            this.character.characterPos.y === element.obstaclePos.y
-            // this.character.velCharacter.y += this.gravity
-            // this.character.characterPos.y += this.character.velCharacter.y
-        }
+                if (this.framesCounter % 50 === 0) {
+                    this.createObstacles()
+                }
+                // element.obstaclePos.y += 5;
+                // this.character.characterPos.y = element.obstaclePos.y
+                // this.character.velCharacter.y -= 10
+                // this.character.characterPos.y += this.character.velCharacter.y
+            }
+            // console.log(element.obstaclePos.y)
+        })
     },
 
     drawScore() {
