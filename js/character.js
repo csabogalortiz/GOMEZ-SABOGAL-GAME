@@ -8,10 +8,10 @@ class Character {
             h: 30
         }
         this.characterPos = {
-            x: 200,
-            y: this.canvasSize.h - this.characterSize.h - 20
+            x: 240,
+            y: this.canvasSize.h - this.characterSize.h - 80
         }
-        this.posFloor = 300
+        // this.posFloor = 100
         
         this.velCharacter = {
             x: 10,
@@ -45,7 +45,6 @@ class Character {
 
     move() {
         this.setEventHandlers()
-        // this.jump()
         
     }
 
@@ -65,14 +64,6 @@ class Character {
         }
     }
 
-    // jump() {
-    //     console.log('Holi')
-    //     if (this.characterPos.y < this.posFloor) {  
-    //         this.characterPos.y -= this.velCharacter.y;
-    //         // this.velCharacter.y -= 10;
-    //     // } else if ((this.characterPos.y = -1(this.characterSize.h + 10))) {      
-    //     }
-    // }
     gameGravity() {
         if (this.characterPos.y >= this.canvasSize.h - this.characterSize.h) {
             this.velCharacter.y *= -1

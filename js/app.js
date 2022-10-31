@@ -6,6 +6,7 @@ const app = {
     description: 'Final Project',
     ctx: undefined,
     obstacles: [],
+    initialObstacles: [],
     canvasSize: {
         w: undefined, h: undefined
     },
@@ -19,10 +20,10 @@ const app = {
         console.log('hola')
         this.setDimensions()
         this.setContext()
-        // this.createObstacles()
         this.createBackground()
         this.createObstacles()
         this.createCharacter()
+        this.createInitialObstacles()
         this.start()
     },
 
@@ -49,13 +50,25 @@ const app = {
 
     // constructor(ctx, obstaclePosX, obstaclePosY, obstacleSizeW, obstacleSizeH, obstacleSpeed, canvasSize) {
     createObstacles() {
+        console.log(this.obstacles.length)
         let posX = this.randomPosition()
         console.log(posX)
         this.obstacles.push(
             // new Obstacle(this.ctx, 100, 300, 150, 40, 200, 26, 0, this.canvasSize),
-            // new Obstacle(this.ctx, 400, 400, 150, 40, 60, 30, 0, this.canvasSize),
+            // new Obstacle(this.ctx, posX, 600, 100, 20, 60, this.canvasSize),
             new Obstacle(this.ctx, posX, 0, 100, 20, 60, this.canvasSize),
         )
+    },
+
+    createInitialObstacles() {
+        console.log('Maria juliana')
+        this.initialObstacles.push(
+
+            new Obstacle(this.ctx, 240, 400, 100, 80, 60, this.canvasSize),
+            new Obstacle(this.ctx, 240, 500, 100, 80, 60, this.canvasSize),
+            new Obstacle(this.ctx, 240, 600, 100, 80, 60, this.canvasSize)
+        )
+
     },
 
 
@@ -72,7 +85,7 @@ const app = {
             this.drawAll()
             this.framesCounter++
 
-            if (this.framesCounter % 50 === 0) {
+            if (this.framesCounter % 20 === 0) {
                 this.createObstacles()
             }
         }, 50)
@@ -86,6 +99,7 @@ const app = {
 
     clearAll() {
         this.ctx.clearRect(0, 0, this.canvasSize.w, this.canvasSize.h)
+        this.obstacles = this.obstacles.filter(element => element.obstaclePos.x >= 0)
     },
 
     drawAll() {
@@ -94,8 +108,12 @@ const app = {
         this.obstacles.forEach(obstacle => obstacle.draw())
         this.obstacles.forEach(obstacle => obstacle.move())
 
+        this.initialObstacles.forEach(obstacle => obstacle.draw())
+        this.initialObstacles.forEach(obstacle => obstacle.move())
+
         this.character.draw()
         this.checkCollision()
+
     },
 
 
@@ -103,19 +121,19 @@ const app = {
         this.obstacles.forEach((element) => {
             if (this.character.characterPos.y + this.character.characterSize.h > element.obstaclePos.y &&
                 this.character.characterPos.y < element.obstaclePos.y + element.obstacleSize.h &&
-                this.character.characterPos.x < element.obstaclePos.x + element.obstacleSize.w &&
-                this.character.characterPos.x + this.character.characterSize.w > element.obstaclePos.x
+                this.character.characterPos.x + this.character.characterSize.w >= element.obstaclePos.x &&
+                this.character.characterPos.x < element.obstaclePos.x + element.obstacleSize.w
+
             ) {
 
                 this.character.velCharacter.y *= -1
-
-                // this.character.characterPos.y = element.obstaclePos.y
 
                 this.framesCounter++
 
                 if (this.framesCounter % 50 === 0) {
                     this.createObstacles()
                 }
+                // this.character.characterPos.y = element.obstaclePos.y
                 // element.obstaclePos.y += 5;
                 // this.character.velCharacter.y -= 10
                 // this.character.characterPos.y += this.character.velCharacter.y
@@ -128,6 +146,9 @@ const app = {
         let score = 0;
 
     }
+
+
+
 
 
 
