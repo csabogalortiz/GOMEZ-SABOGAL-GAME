@@ -24,6 +24,7 @@ const app = {
         this.createObstacles()
         this.createCharacter()
         this.createInitialObstacles()
+
         this.start()
     },
 
@@ -63,8 +64,8 @@ const app = {
     createInitialObstacles() {
         console.log('Maria juliana')
         this.initialObstacles.push(
-            new Obstacle(this.ctx, 240, 400, 200, 20, 60, this.canvasSize),
-            new Obstacle(this.ctx, 50, 300, 300, 20, 60, this.canvasSize),
+            new Obstacle(this.ctx, 240, 400, 100, 20, 60, this.canvasSize),
+            new Obstacle(this.ctx, 50, 300, 100, 20, 60, this.canvasSize),
             // new Obstacle(this.ctx, 100, 200, 400, 20, 60, this.canvasSize),
 
         )
@@ -79,7 +80,9 @@ const app = {
 
         setInterval(() => {
 
+
             this.clearAll()
+            this.gameOver()
 
             this.drawAll()
             this.framesCounter++
@@ -156,8 +159,12 @@ const app = {
 
     },
 
-    drawScore() {
-        let score = 0;
+    gameOver() {
+        console.log('SOY LA PELOTITA', this.character.characterPos.y)
+        if (this.character.characterPos.y > 900) {
+            console.log('Si sirve')
+            alert('ALERTA')
+        }
 
     }
 
