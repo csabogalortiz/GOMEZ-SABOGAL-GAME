@@ -5,7 +5,7 @@ class Background {
         this.canvasSize = canvasSize
         this.backgroundSize = {
             w: 500,
-            h: 700
+            h: 900
         }
         this.backgroundPos = {
             x: 0,
@@ -13,6 +13,8 @@ class Background {
         }
         this.backgroundImage = "./images/paper.jpeg"
         this.imageInstance = undefined
+
+        this.velY = 3
 
         this.init()
     }
@@ -34,18 +36,20 @@ class Background {
             this.ctx.drawImage(
                 this.imageInstance,
                 this.backgroundPos.x,
-                this.backgroundPos.y + this.backgroundSize.h,
+                this.backgroundPos.y - this.backgroundSize.h,
                 this.backgroundSize.w,
                 this.backgroundSize.h
             )
-        // this.move()
+        this.move()
+    }
+
+    move() {
+        if (this.backgroundPos.y >= this.backgroundSize.h) {
+            this.backgroundPos.y = 0;
+        }
+        this.backgroundPos.y += this.velY;
+
     }
 }
 
-
-// move() {
-//     if (this.posY <= -this.width) {
-//         this.posY = 0;
-//     }
-//     this.posY -= this.velY;
-// }
+// 

@@ -7,7 +7,6 @@ class Coin {
         }
 
         this.coinPos = {
-
             x: coinPosX,
             y: coinPosY
 

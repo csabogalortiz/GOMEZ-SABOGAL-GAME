@@ -42,3 +42,24 @@ body button {
 .ball-img {
   display: none;
 }
+
+.game-Score {
+  background-color: blueviolet;
+  float: right;
+  margin-right: 30%;
+  margin-top: 20%;
+  border: 10px;
+  box-shadow: 22px
+}
+
+.game-Score p {
+  font-size: 30px;
+  font-family: "Verdana";
+  color: white
+}
+
+
+#Score {
+  font-size: 40px;
+  color: white
+}

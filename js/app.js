@@ -14,11 +14,12 @@ const app = {
     framesCounter: 0,
     character: undefined,
     background: undefined,
-    score: undefined,
+    score: 0,
+
 
 
     init() {
-        console.log('hola')
+
         this.setDimensions()
         this.setContext()
         this.createBackground()
@@ -26,6 +27,7 @@ const app = {
         this.createCharacter()
         this.createInitialObstacles()
         this.createCoins()
+        this.scoreCount()
         this.start()
     },
 
@@ -50,10 +52,10 @@ const app = {
         this.background = new Background(this.ctx, this.canvasSize)
     },
 
-    // constructor(ctx, obstaclePosX, obs. taclePosY, obstacleSizeW, obstacleSizeH, obstacleSpeed, canvasSize) {
+    // constructor(ctx, obstaclePosX, obstaclePosY, obstacleSizeW, obstacleSizeH, obstacleSpeed, canvasSize) {
     createObstacles() {
         let posX = this.randomPosition()
-        console.log(posX)
+        // console.log(posX)
         this.obstacles.push(
             // new Obstacle(this.ctx, 100, 300, 150, 40, 200, 26, 0, this.canvasSize),
             // new Obstacle(this.ctx, posX, 600, 100, 20, 60, this.canvasSize),
@@ -75,7 +77,6 @@ const app = {
 
         // console.log('posCoinssss', this.coinPosX.length)
         let coinPosX = this.randomPosition()
-        console.log(coinPosX)
         this.coins.push(
             // new Obstacle(this.ctx, 100, 300, 150, 40, 200, 26, 0, this.canvasSize),
             // new Obstacle(this.ctx, posX, 600, 100, 20, 60, this.canvasSize),
@@ -97,6 +98,7 @@ const app = {
             this.gameOver()
 
             this.drawAll()
+            this.scoreCount()
             this.framesCounter++
             if (this.framesCounter % 20 === 0) {
                 this.createObstacles()
@@ -112,6 +114,7 @@ const app = {
     clearAll() {
         this.ctx.clearRect(0, 0, this.canvasSize.w, this.canvasSize.h)
         this.obstacles = this.obstacles.filter(element => element.obstaclePos.x >= 0)
+        this.coins = this.coins.filter(coin => coin.coinPos.x <= this.canvasSize.w)
     },
 
     drawAll() {
@@ -130,6 +133,10 @@ const app = {
 
     },
 
+    // scoreCounter() {
+    //     let score = 0
+
+    // },
 
     checkCollision() {
         this.obstacles.forEach((element) => {
@@ -158,13 +165,22 @@ const app = {
             }
         })
 
-        this.coins.forEach((element) => {
-            if (this.character.characterPos.y + this.character.characterSize.h > element.coinPos.y &&
-                this.character.characterPos.y < element.obstaclePos.y + element.coinSize.h &&
-                this.character.characterPos.x + this.character.characterSize.w > element.coinPos.x &&
-                this.character.characterPos.x < element.obstaclePos.x + element.coinSize.w
+
+        this.coins.forEach((coin) => {
+            if (this.character.characterPos.y + this.character.characterSize.h > coin.coinPos.y &&
+                this.character.characterPos.y < coin.coinPos.y + coin.coinSize.h &&
+                this.character.characterPos.x + this.character.characterSize.w > coin.coinPos.x &&
+                this.character.characterPos.x < coin.coinPos.x + coin.coinSize.w
 
             ) {
+
+                coin.coinPos.x = +5000
+
+                this.score++
+
+
+                // console.log(document.querySelector("#prueba"))
+                // document.querySelector("#prueba").innerHTML
 
 
             }
@@ -188,14 +204,20 @@ const app = {
 
     gameOver() {
         // console.log('SOY LA PELOTITA', this.character.characterPos.y)
-        if (this.character.characterPos.y > 900) {
-            console.log('Si sirve')
+        if (this.character.characterPos.y > 890) {
+
             alert('ALERTA')
         }
 
+    },
+
+    scoreCount() {
+        let stringScore = this.score.toString()
+
+        const pruebita = document.querySelector("#prueba")
+        console.log(`el score es ${pruebita.innerText}`)
+        pruebita.innerText = stringScore
     }
-
-
 
 
 }
