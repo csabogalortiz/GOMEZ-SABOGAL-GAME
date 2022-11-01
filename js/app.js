@@ -114,7 +114,7 @@ const app = {
     clearAll() {
         this.ctx.clearRect(0, 0, this.canvasSize.w, this.canvasSize.h)
         this.obstacles = this.obstacles.filter(element => element.obstaclePos.x >= 0)
-        this.coins = this.coins.filter(coin => coin.coinPos.x <= this.canvasSize.w)
+        // this.coins = this.coins.filter(coin => coin.coinPos.x <= this.canvasSize.w)
     },
 
     drawAll() {
@@ -174,7 +174,8 @@ const app = {
 
             ) {
 
-                coin.coinPos.x = + 4000
+                let collidedCoin = this.coins.indexOf(coin)
+                this.coins.splice(collidedCoin, 1)
 
                 this.score++
 
