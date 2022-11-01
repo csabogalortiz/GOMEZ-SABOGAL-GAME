@@ -174,7 +174,7 @@ const app = {
 
             ) {
 
-                coin.coinPos.x = +5000
+                coin.coinPos.x = + 4000
 
                 this.score++
 
