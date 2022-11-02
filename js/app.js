@@ -49,8 +49,8 @@ const app = {
 
     setDimensions() {
         this.canvasSize = {
-            w: 500,
-            h: 900,
+            w: 300,
+            h: 700,
         }
         document.querySelector('#myCanvas').setAttribute('height', this.canvasSize.h)
         document.querySelector('#myCanvas').setAttribute('width', this.canvasSize.w)
