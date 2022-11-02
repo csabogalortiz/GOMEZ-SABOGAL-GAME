@@ -50,6 +50,8 @@ class Background {
         this.backgroundPos.y += this.velY;
 
     }
+
+
 }
 
 // 

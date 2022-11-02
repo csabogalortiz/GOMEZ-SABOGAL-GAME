@@ -7,6 +7,8 @@ const app = {
     ctx: undefined,
     obstacles: [],
     initialObstacles: [],
+    badObstacles: [],
+    badEnemys: [],
     coins: [],
     canvasSize: {
         w: undefined, h: undefined
@@ -15,19 +17,29 @@ const app = {
     character: undefined,
     background: undefined,
     score: 0,
+    lives: 3,
+    interval: undefined,
 
 
 
     init() {
 
+        this.score = 0
+        this.lives = 3
+        this.setEventHandlers()
         this.setDimensions()
         this.setContext()
         this.createBackground()
         this.createObstacles()
         this.createCharacter()
+        this.createBadObstacles()
+        this.createBadEnemys()
         this.createInitialObstacles()
         this.createCoins()
         this.scoreCount()
+        this.livesCount()
+        this.gameOver()
+        // this.restart()
         this.start()
     },
 
@@ -73,14 +85,25 @@ const app = {
 
     },
 
-    createCoins() {
+    createBadObstacles() {
+        let posbX = this.randomPosition()
+        this.badObstacles.push(
+            new Obstacle(this.ctx, posbX, 0, 100, 20, 60, this.canvasSize),
+        )
+    },
 
-        // console.log('posCoinssss', this.coinPosX.length)
+    createCoins() {
         let coinPosX = this.randomPosition()
         this.coins.push(
-            // new Obstacle(this.ctx, 100, 300, 150, 40, 200, 26, 0, this.canvasSize),
-            // new Obstacle(this.ctx, posX, 600, 100, 20, 60, this.canvasSize),
-            new Coin(this.ctx, coinPosX, 0, 100, 20, 60, this.canvasSize),
+            new Coin(this.ctx, coinPosX + 1, 0, 100, 20, 60, this.canvasSize),
+        )
+
+    },
+
+    createBadEnemys() {
+        let badPosX = this.randomPosition()
+        this.badEnemys.push(
+            new Enemy(this.ctx, badPosX + 5, 40, 100, 20, 60, this.canvasSize),
         )
 
     },
@@ -91,22 +114,27 @@ const app = {
 
     start() {
 
-        setInterval(() => {
-
-
+        this.interval = setInterval(() => {
             this.clearAll()
-            this.gameOver()
-
             this.drawAll()
+            // this.restart()
             this.scoreCount()
+            this.livesCount()
+
             this.framesCounter++
             if (this.framesCounter % 20 === 0) {
                 this.createObstacles()
-
             }
             if (this.framesCounter % 70 === 0) {
                 this.createCoins()
             }
+            if (this.framesCounter % 80 === 0) {
+                this.createBadObstacles()
+            }
+            if (this.framesCounter % 100 === 0) {
+                this.createBadEnemys()
+            }
+            this.gameOver()
         }, 50)
     },
 
@@ -114,11 +142,10 @@ const app = {
     clearAll() {
         this.ctx.clearRect(0, 0, this.canvasSize.w, this.canvasSize.h)
         this.obstacles = this.obstacles.filter(element => element.obstaclePos.x >= 0)
-        // this.coins = this.coins.filter(coin => coin.coinPos.x <= this.canvasSize.w)
+        this.badObstacles = this.badObstacles.filter(element => element.obstaclePos.x >= 0)
     },
 
     drawAll() {
-        // console.log('hola1')
         this.background.draw()
         this.obstacles.forEach(obstacle => obstacle.draw())
         this.obstacles.forEach(obstacle => obstacle.move())
@@ -126,17 +153,19 @@ const app = {
         this.initialObstacles.forEach(obstacle => obstacle.draw())
         this.initialObstacles.forEach(obstacle => obstacle.move())
 
+        this.badObstacles.forEach(obstacle => obstacle.draw())
+        this.badObstacles.forEach(obstacle => obstacle.move())
+
         this.coins.forEach(coin => coin.draw())
         this.coins.forEach(coin => coin.move())
+
+        this.badEnemys.forEach(enemy => enemy.draw())
+        this.badEnemys.forEach(enemy => enemy.move())
+
         this.character.draw()
         this.checkCollision()
 
     },
-
-    // scoreCounter() {
-    //     let score = 0
-
-    // },
 
     checkCollision() {
         this.obstacles.forEach((element) => {
@@ -176,40 +205,91 @@ const app = {
 
                 let collidedCoin = this.coins.indexOf(coin)
                 this.coins.splice(collidedCoin, 1)
-
                 this.score++
+            }
+        })
+
+        this.badObstacles.forEach((element) => {
+            if (this.character.characterPos.y + this.character.characterSize.h > element.obstaclePos.y &&
+                this.character.characterPos.y < element.obstaclePos.y + element.obstacleSize.h &&
+                this.character.characterPos.x + this.character.characterSize.w > element.obstaclePos.x &&
+                this.character.characterPos.x < element.obstaclePos.x + element.obstacleSize.w
 
 
-                // console.log(document.querySelector("#prueba"))
-                // document.querySelector("#prueba").innerHTML
+            ) {
+                this.character.velCharacter.y *= -1
+                let collidedObstacle = this.badObstacles.indexOf(element)
+                this.badObstacles.splice(collidedObstacle, 1)
 
 
             }
         })
+        this.badEnemys.forEach((element) => {
+            if (this.character.characterPos.y + this.character.characterSize.h > element.enemyPos.y &&
+                this.character.characterPos.y < element.enemyPos.y + element.enemySize.h &&
+                this.character.characterPos.x + this.character.characterSize.w > element.enemyPos.x &&
+                this.character.characterPos.x < element.enemyPos.x + element.enemySize.w
+
+            ) {
+
+                let collidedEnemy = this.badEnemys.indexOf(element)
+                this.badEnemys.splice(collidedEnemy, 1)
+                this.lives--
+
+            }
+        })
+    },
 
 
 
-        // this.framesCounter++
+    setEventHandlers() {
 
-        // if (this.framesCounter % 50 === 0) {
-        //     this.createObstacles()
-        // }
-        // this.character.characterPos.y = element.obstaclePos.y
-        // element.obstaclePos.y += 5;
-        // this.character.velCharacter.y -= 10
-        // this.character.characterPos.y += this.character.velCharacter.y
+        document.onkeyup = event => {
 
-        // console.log(element.obstaclePos.y)
+            console.log(event.key)
 
+            switch (event.key) {
+                case 'r':
+                    location.reload()
+                    break;
+            }
+
+        }
     },
 
     gameOver() {
-        // console.log('SOY LA PELOTITA', this.character.characterPos.y)
-        if (this.character.characterPos.y > 890) {
+        if (this.character.characterPos.y > 890 || this.lives === 0) {
+            clearInterval(this.interval)
+            this.ctx.fillStyle = '#E9444D'
+            this.ctx.fillRect(0, 0, 500, 900)
+            this.ctx.textAlign = "center",
+                this.ctx.fillStyle = "white",
+                this.ctx.font = "60px helvetica"
+            this.ctx.fillText(
+                "GAME OVER",
+                this.canvasSize.w / 2,
+                this.canvasSize.h / 2
+            )
 
-            alert('ALERTA')
+
+            this.ctx.textAlign = "center",
+                this.ctx.fillStyle = "white",
+                this.ctx.font = "40px play"
+            this.ctx.fillText(
+                "Press r to restart",
+                this.canvasSize.w / 2,
+                (this.canvasSize.h / 2) + 80
+            )
+
+
+
+
+            // alert("alerta")
+            // this.interval()
+            // clearInterval(this.interval)
+
+
         }
-
     },
 
     scoreCount() {
@@ -218,13 +298,21 @@ const app = {
         const pruebita = document.querySelector("#prueba")
         console.log(`el score es ${pruebita.innerText}`)
         pruebita.innerText = stringScore
+    },
+
+
+    livesCount() {
+
+        let stringLives = this.lives.toString()
+
+        const livescount = document.querySelector("#lives")
+        console.log(`tus vidas son ${livescount.innerText}`)
+        livescount.innerText = stringLives
+
+
     }
 
-
 }
-
-
-
 
 
 

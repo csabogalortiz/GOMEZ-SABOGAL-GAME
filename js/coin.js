@@ -36,7 +36,6 @@ class Coin {
         )
     }
 
-    // tiene que quedar en cero para que no empiecen a bajar aleatoriamente
     move() {
         this.coinPos.y += 5
     }

@@ -10,6 +10,12 @@
 </head>
 
 <body>
+  <!-- <div class="game-over">
+    <p>GAME OVER!</p>
+    <button id="re-start-button">Restart</button>
+  </div> -->
+
+
   <div class="game-intro">
     <img src="./images/Avocado_Mesa de trabajo 1.png" alt="" class="logo-img" />
     <br />
@@ -21,9 +27,9 @@
 
   <div class="game-Score">
     <p>Your Score! <span id="prueba"> 0 </span></p>
-
-
-
+  </div>
+  <div class="lives">
+    <p>Your Lives! <span id="lives"> 3 </span></p>
   </div>
 
   <div id="game-board">
@@ -31,9 +37,8 @@
   </div>
 
 
-
-
   <script src="./js/character.js"></script>
+  <script src="./js/enemy.js"></script>
   <script src="./js/coin.js"></script>
   <script src="./js/obstacle.js"></script>
   <script src="./js/background.js"></script>
