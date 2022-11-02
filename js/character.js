@@ -12,18 +12,19 @@ class Character {
             y: this.canvasSize.h - this.characterSize.h - 600
         }
         // this.posFloor = 100
-        
+
         this.velCharacter = {
             x: 10,
             y: 20
-        } 
+        }
         this.gravity = 1
-        
+
         // this.characterPhysics = { gravity: .4 }
         this.characterImage = "./images/ball.png"
         this.imageInstance = undefined
+
         this.init()
-    
+
     }
 
     init() {
@@ -45,7 +46,7 @@ class Character {
 
     move() {
         this.setEventHandlers()
-        
+
     }
 
     setEventHandlers() {
@@ -55,6 +56,7 @@ class Character {
                     this.characterPos.x += 50
                     break;
                 case 'ArrowLeft':
+                    // this.moveleft ()
                     this.characterPos.x -= 50
                     break;
                 case 'ArrowUp':
@@ -62,34 +64,23 @@ class Character {
                     break;
             }
         }
+
+
+
     }
+    // moveleft() {
+    //     this.characterPos.x -= 50
+    // }
 
     gameGravity() {
-        if (this.characterPos.y >= this.canvasSize.h - this.characterSize.h) {
-            this.velCharacter.y *= -1
-        }
+
         this.velCharacter.y += this.gravity
         this.characterPos.y += this.velCharacter.y
     }
+
 }
 
-    // Character Jump
 
-
-    // if (this.characterPos.y >= this.canvasSize.h - this.characterSize.h) {
-    //     this.characterSpeed.y *= -1
-    // }
-
-    // if (this.characterPos.x >= this.canvasSize.w - this.characterSize.w) {
-    //     this.characterSpeed.x *= -1
-    // }
-
-    // this.characterPos.x += this.characterSpeed.x
-    // this.characterSpeed.y += this.characterPhysics.gravity
-    // this.characterPos.y += this.characterSpeed.y
-
-      
-    // }
 
 
 

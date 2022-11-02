@@ -13,7 +13,7 @@ const app = {
     canvasSize: {
         w: undefined, h: undefined
     },
-    framesCounter: 0,
+    framesCounter: 60,
     character: undefined,
     background: undefined,
     score: 0,
@@ -23,7 +23,7 @@ const app = {
 
 
     init() {
-
+        this.savedHighScore()
         this.score = 0
         this.lives = 3
         this.setEventHandlers()
@@ -114,6 +114,7 @@ const app = {
 
     start() {
 
+
         this.interval = setInterval(() => {
             this.clearAll()
             this.drawAll()
@@ -134,8 +135,9 @@ const app = {
             if (this.framesCounter % 100 === 0) {
                 this.createBadEnemys()
             }
+
             this.gameOver()
-        }, 50)
+        }, 1000 / this.framesCounter)
     },
 
 
@@ -189,7 +191,11 @@ const app = {
 
             ) {
 
-                this.character.velCharacter.y *= -1
+                // this.character.velCharacter.y *= -1
+                if (this.character.velCharacter.y > 0) {
+                    this.character.velCharacter.y *= -1
+
+                }
 
             }
         })
@@ -246,7 +252,7 @@ const app = {
 
         document.onkeyup = event => {
 
-            console.log(event.key)
+            // console.log(event.key)
 
             switch (event.key) {
                 case 'r':
@@ -257,8 +263,11 @@ const app = {
         }
     },
 
+    // || this.lives === 0
+
     gameOver() {
-        if (this.character.characterPos.y > 890 || this.lives === 0) {
+        console.log(this.character.characterPos.y)
+        if (this.character.characterPos.y >= this.canvasSize.h) {
             clearInterval(this.interval)
             this.ctx.fillStyle = '#E9444D'
             this.ctx.fillRect(0, 0, 500, 900)
@@ -281,6 +290,8 @@ const app = {
                 (this.canvasSize.h / 2) + 80
             )
 
+            this.highScore()
+
 
 
 
@@ -296,7 +307,7 @@ const app = {
         let stringScore = this.score.toString()
 
         const pruebita = document.querySelector("#prueba")
-        console.log(`el score es ${pruebita.innerText}`)
+
         pruebita.innerText = stringScore
     },
 
@@ -306,11 +317,28 @@ const app = {
         let stringLives = this.lives.toString()
 
         const livescount = document.querySelector("#lives")
-        console.log(`tus vidas son ${livescount.innerText}`)
+        // console.log(`tus vidas son ${livescount.innerText}`)
         livescount.innerText = stringLives
 
 
-    }
+    },
+
+    highScore() {
+        localStorage.setItem('save', JSON.stringify(this.score));
+    },
+
+    savedHighScore() {
+        let topScore = localStorage.getItem('save');
+        const savedScore = document.querySelector("#highScore")
+        savedScore.innerText = topScore
+
+
+    },
+
+
+
+
+
 
 }
 
