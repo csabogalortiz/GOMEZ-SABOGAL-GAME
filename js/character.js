@@ -22,6 +22,8 @@ class Character {
         // this.characterPhysics = { gravity: .4 }
         this.characterImage = "./images/ball.png"
         this.imageInstance = undefined
+        this.left = false
+        this.right = false
 
         this.init()
 
@@ -53,24 +55,43 @@ class Character {
         document.onkeydown = event => {
             switch (event.key) {
                 case 'ArrowRight':
-                    this.characterPos.x += 50
+                    this.right = true
+
                     break;
                 case 'ArrowLeft':
-                    // this.moveleft ()
-                    this.characterPos.x -= 50
+                    this.left = true
+                    // this.characterPos.x -= 50
+
                     break;
-                case 'ArrowUp':
-                    this.characterPos.y -= 50
-                    break;
+                // case 'ArrowUp':
+                //     this.characterPos.y -= 50
+                //     break;
+            }
+
+            document.onkeyup = event => {
+                switch (event.key) {
+                    case 'ArrowRight':
+                        this.right = false
+                        // return false
+                        break;
+                    case 'ArrowLeft':
+                        this.left = false
+                        // this.characterPos.x -= 50
+
+                        break;
+                }
+
             }
         }
-
-
-
     }
-    // moveleft() {
-    //     this.characterPos.x -= 50
-    // }
+
+    moveLeft() {
+        this.characterPos.x -= 20
+    }
+
+    moveRight() {
+        this.characterPos.x += 20
+    }
 
     gameGravity() {
 
@@ -79,6 +100,7 @@ class Character {
     }
 
 }
+
 
 
 

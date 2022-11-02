@@ -62,6 +62,13 @@ body button {
   display: none;
 }
 
+.high-Score {
+  background-color: green;
+  float: right;
+  margin-right: 5%;
+  margin-top: 10%;
+}
+
 .game-Score {
   background-color: blueviolet;
   float: right;

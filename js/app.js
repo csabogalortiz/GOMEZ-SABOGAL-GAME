@@ -13,7 +13,7 @@ const app = {
     canvasSize: {
         w: undefined, h: undefined
     },
-    framesCounter: 60,
+    framesCounter: 0,
     character: undefined,
     background: undefined,
     score: 0,
@@ -114,13 +114,16 @@ const app = {
 
     start() {
 
-
         this.interval = setInterval(() => {
+
             this.clearAll()
             this.drawAll()
             // this.restart()
             this.scoreCount()
             this.livesCount()
+            if (this.character.right) this.character.moveRight()
+            if (this.character.left) this.character.moveLeft()
+
 
             this.framesCounter++
             if (this.framesCounter % 20 === 0) {
@@ -137,7 +140,7 @@ const app = {
             }
 
             this.gameOver()
-        }, 1000 / this.framesCounter)
+        }, 50)
     },
 
 
@@ -246,8 +249,6 @@ const app = {
         })
     },
 
-
-
     setEventHandlers() {
 
         document.onkeyup = event => {
@@ -263,7 +264,6 @@ const app = {
         }
     },
 
-    // || this.lives === 0
 
     gameOver() {
         console.log(this.character.characterPos.y)
