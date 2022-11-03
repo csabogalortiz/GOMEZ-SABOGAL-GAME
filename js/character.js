@@ -126,6 +126,7 @@ class Character {
 
         this.velCharacter.y += this.gravity
         this.characterPos.y += this.velCharacter.y
+        animate()
     }
 
 }
