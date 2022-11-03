@@ -174,10 +174,16 @@ const app = {
 
     checkCollision() {
         this.obstacles.forEach((element) => {
-            if (this.character.characterPos.y + this.character.characterSize.h > element.obstaclePos.y &&
-                this.character.characterPos.y < element.obstaclePos.y + element.obstacleSize.h &&
-                this.character.characterPos.x + this.character.characterSize.w > element.obstaclePos.x &&
-                this.character.characterPos.x < element.obstaclePos.x + element.obstacleSize.w
+            if (
+                this.character.characterPos.y + this.character.characterSize.h <= element.obstaclePos.y &&
+                this.character.characterPos.y + this.character.characterSize.h + this.character.velCharacter.y >= element.obstaclePos.y &&
+                this.character.characterPos.x + this.character.characterSize.w >= element.obstaclePos.x &&
+                this.character.characterPos.x <= element.obstaclePos.x + element.obstacleSize.w
+
+
+                // this.character.characterPos.y < element.obstaclePos.y + element.obstacleSize.h &&
+
+                // this.character.characterPos.x < element.obstaclePos.x + element.obstacleSize.w
 
             ) {
 
@@ -193,7 +199,6 @@ const app = {
                 this.character.characterPos.x < element.obstaclePos.x + element.obstacleSize.w
 
             ) {
-
                 // this.character.velCharacter.y *= -1
                 if (this.character.velCharacter.y > 0) {
                     this.character.velCharacter.y *= -1
@@ -250,13 +255,12 @@ const app = {
     },
 
     setEventHandlers() {
+        console.log('hola')
 
-        document.onkeyup = event => {
-
-            // console.log(event.key)
-
+        document.onkeydown = event => {
             switch (event.key) {
                 case 'r':
+
                     location.reload()
                     break;
             }
@@ -266,7 +270,7 @@ const app = {
 
 
     gameOver() {
-        console.log(this.character.characterPos.y)
+        // console.log(this.character.characterPos.y)
         if (this.character.characterPos.y >= this.canvasSize.h) {
             clearInterval(this.interval)
             this.ctx.fillStyle = '#E9444D'

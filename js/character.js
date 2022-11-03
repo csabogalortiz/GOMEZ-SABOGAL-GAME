@@ -66,12 +66,18 @@ class Character {
                 // case 'ArrowUp':
                 //     this.characterPos.y -= 50
                 //     break;
+
+                case 'r':
+
+                    location.reload()
+                    break;
             }
 
             document.onkeyup = event => {
                 switch (event.key) {
                     case 'ArrowRight':
                         this.right = false
+
                         // return false
                         break;
                     case 'ArrowLeft':
