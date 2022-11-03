@@ -16,32 +16,32 @@ body {
 }
 
 .logo-img {
-  width: 350px;
+  width: 100px;
 }
 
 .arrows-img {
-  width: 300px;
+  width: 100px;
 }
 
 body button {
-  font-size: 30px;
+  font-size: 10px;
   background-color: purple;
   color: #fff;
-  padding: 20px 40px;
+  padding: 10px 20px;
   border: 0;
   box-shadow: 0;
   border-radius: 5px;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 }
 
 #re-start-button {
   background-color: red;
   color: #fff;
-  padding: 20px 40px;
+  padding: 10px 20px;
   border: 0;
   box-shadow: 0;
   border-radius: 5px;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 
 
 }
@@ -50,8 +50,6 @@ body button {
   background-color: white;
 
 }
-
-
 
 #game-board {
   float: left;
@@ -65,27 +63,37 @@ body button {
 .high-Score {
   background-color: green;
   float: right;
-  margin-right: 5%;
+  margin-right: 0;
   margin-top: 10%;
+  font-size: 10px;
 }
 
 .game-Score {
   background-color: blueviolet;
   float: right;
-  margin-right: 30%;
+  margin-right: 0%;
+  margin-top: 20%;
+  border: 10px;
+  box-shadow: 22px
+}
+
+.lives {
+  background-color: blueviolet;
+  float: right;
+  margin-right: 0%;
   margin-top: 20%;
   border: 10px;
   box-shadow: 22px
 }
 
 .game-Score p {
-  font-size: 30px;
+  font-size: 10px;
   font-family: "Verdana";
   color: white
 }
 
 
 #Score {
-  font-size: 40px;
+  font-size: 10px;
   color: white
 }
