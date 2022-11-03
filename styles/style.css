@@ -8,12 +8,12 @@ body {
 }
 
 .game-intro {
-  float: left;
+  /* float: left; */
   padding: 0% 10%;
 }
 
 .game-intro p {
-  font-size: 18px;
+  font-size: 25px;
   font-family: "Verdana"
 }
 
@@ -26,8 +26,8 @@ body {
 }
 
 body button {
-  font-size: 20px;
-  background-color: rgb(34, 32, 34);
+  font-size: 25px;
+  /* background-color: #F5D020; */
   color: #fff;
   padding: 20px 40px;
   border: 0;
@@ -56,7 +56,7 @@ body button {
 }
 
 #game-board {
-  float: left;
+  /* float: left; */
   padding: 20px 0px;
 }
 
@@ -65,12 +65,12 @@ body button {
 }
 
 .high-Score {
-  background-color: rgb(57, 43, 73);
-  float: right;
+  /* background-color: #F5D020; */
+  /* float: right; */
   margin-right: 40px;
   margin-top: 10%;
-  font-size: 20px;
-  color: wheat;
+  font-size: 25px;
+  color: white;
   padding: 10px;
   border-radius: 15px;
   box-shadow: 5px;
@@ -81,8 +81,8 @@ body button {
 
 .game-Score {
   /* background-image: url(./images/FondoNinja.png); */
-  background-color: #242D49;
-  float: right;
+  /* background-color: #242D49; */
+  /* float: right; */
   margin-right: 0%;
   margin-top: 20%;
   border: 10px;
@@ -90,11 +90,11 @@ body button {
 }
 
 .lives {
-  background-color: rgb(57, 43, 73);
-  float: right;
+  /* background-color: #F5D020; */
+  /* float: right; */
   margin-right: 50px;
-  font-size: 20px;
-  color: wheat;
+  font-size: 25px;
+  color: white;
   padding: 10px;
   border-radius: 15px;
   box-shadow: 5px;
@@ -105,19 +105,19 @@ body button {
 
   font-family: "Verdana";
   color: white;
-  float: right;
+  /* float: right; */
   margin-right: 50px;
   margin-top: 30%;
-  font-size: 20px;
+  font-size: 25px;
   padding: 10px;
   border-radius: 15px;
-  background-color: rgb(57, 43, 73);
+  /* background-color: rgb(57, 43, 73); */
   box-shadow: 5px;
   font-weight: bolder;
 }
 
 
 #Score {
-  font-size: 10px;
+  font-size: 25px;
   color: white
 }

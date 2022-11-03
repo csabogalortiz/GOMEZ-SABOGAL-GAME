@@ -19,6 +19,7 @@ const app = {
     score: 0,
     lives: 3,
     interval: undefined,
+    sound: new Audio('./sounds/very-lush-and-swag-loop-74140.mp3'),
 
 
 
@@ -38,7 +39,7 @@ const app = {
         this.createCoins()
         this.scoreCount()
         this.livesCount()
-        this.gameOver()
+        this.sound.play()
         // this.restart()
         this.start()
     },
@@ -136,8 +137,11 @@ const app = {
             if (this.framesCounter % 100 === 0) {
                 this.createBadEnemys()
             }
+            console.log(this.character.characterPos.y >= this.canvasSize.h)
 
-            this.gameOver()
+            if (this.character.characterPos.y >= this.canvasSize.h) {
+                this.gameOver()
+            }
         }, 50)
     },
 
@@ -159,7 +163,7 @@ const app = {
         this.badObstacles.forEach(obstacle => obstacle.draw())
         this.badObstacles.forEach(obstacle => obstacle.move())
 
-        this.coins.forEach(coin => coin.draw())
+        this.coins.forEach(coin => coin.draw(this.framesCounter))
         this.coins.forEach(coin => coin.move())
 
         this.badEnemys.forEach(enemy => enemy.draw(this.framesCounter))
@@ -187,10 +191,11 @@ const app = {
         })
 
         this.initialObstacles.forEach((element) => {
-            if (this.character.characterPos.y + this.character.characterSize.h > element.obstaclePos.y &&
-                this.character.characterPos.y < element.obstaclePos.y + element.obstacleSize.h &&
-                this.character.characterPos.x + this.character.characterSize.w > element.obstaclePos.x &&
-                this.character.characterPos.x < element.obstaclePos.x + element.obstacleSize.w
+            if (
+                this.character.characterPos.y + this.character.characterSize.h <= element.obstaclePos.y &&
+                this.character.characterPos.y + this.character.characterSize.h + this.character.velCharacter.y >= element.obstaclePos.y &&
+                this.character.characterPos.x + this.character.characterSize.w >= element.obstaclePos.x &&
+                this.character.characterPos.x <= element.obstaclePos.x + element.obstacleSize.w
 
             ) {
 
@@ -216,11 +221,11 @@ const app = {
         })
 
         this.badObstacles.forEach((element) => {
-            if (this.character.characterPos.y + this.character.characterSize.h > element.obstaclePos.y &&
-                this.character.characterPos.y < element.obstaclePos.y + element.obstacleSize.h &&
-                this.character.characterPos.x + this.character.characterSize.w > element.obstaclePos.x &&
-                this.character.characterPos.x < element.obstaclePos.x + element.obstacleSize.w
-
+            if (
+                this.character.characterPos.y + this.character.characterSize.h <= element.obstaclePos.y &&
+                this.character.characterPos.y + this.character.characterSize.h + this.character.velCharacter.y >= element.obstaclePos.y &&
+                this.character.characterPos.x + this.character.characterSize.w >= element.obstaclePos.x &&
+                this.character.characterPos.x <= element.obstaclePos.x + element.obstacleSize.w
 
             ) {
                 this.character.velCharacter.y *= -1
@@ -263,40 +268,40 @@ const app = {
 
     gameOver() {
         // console.log(this.character.characterPos.y)
-        if (this.character.characterPos.y >= this.canvasSize.h) {
-            clearInterval(this.interval)
-            this.ctx.fillStyle = '#E9444D'
-            this.ctx.fillRect(0, 0, 500, 900)
-            this.ctx.textAlign = "center",
-                this.ctx.fillStyle = "white",
-                this.ctx.font = "60px helvetica"
-            this.ctx.fillText(
-                "GAME OVER",
-                this.canvasSize.w / 2,
-                this.canvasSize.h / 2
-            )
+        // if (this.character.characterPos.y >= this.canvasSize.h) {
+        clearInterval(this.interval)
+        this.ctx.fillStyle = '#06070A'
+        this.ctx.fillRect(0, 0, 500, 900)
+        this.ctx.textAlign = "center",
+            this.ctx.fillStyle = "white",
+            this.ctx.font = "60px helvetica"
+        this.ctx.fillText(
+            "GAME OVER",
+            this.canvasSize.w / 2,
+            this.canvasSize.h / 2
+        )
 
 
-            this.ctx.textAlign = "center",
-                this.ctx.fillStyle = "white",
-                this.ctx.font = "40px play"
-            this.ctx.fillText(
-                "Press r to restart",
-                this.canvasSize.w / 2,
-                (this.canvasSize.h / 2) + 80
-            )
+        this.ctx.textAlign = "center",
+            this.ctx.fillStyle = "white",
+            this.ctx.font = "40px helvetica"
+        this.ctx.fillText(
+            "Press r to restart",
+            this.canvasSize.w / 2,
+            (this.canvasSize.h / 2) + 80
+        )
 
-            this.highScore()
-
-
+        this.highScore()
 
 
-            // alert("alerta")
-            // this.interval()
-            // clearInterval(this.interval)
 
 
-        }
+        // alert("alerta")
+        // this.interval()
+        // clearInterval(this.interval)
+
+
+        // }
     },
 
     scoreCount() {
@@ -316,6 +321,9 @@ const app = {
         // console.log(`tus vidas son ${livescount.innerText}`)
         livescount.innerText = stringLives
 
+        if (this.lives === 0) {
+            this.gameOver()
+        }
 
     },
 

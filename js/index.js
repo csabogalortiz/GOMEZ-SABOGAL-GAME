@@ -6,6 +6,9 @@ window.onload = () => {
 
   document.getElementById('start-button').onclick = () => {
 
+    document.getElementById("instructions-img").style.display = "none"
+
+    document.getElementById("myCanvas").style.display = "block"
     startGame();
 
   };

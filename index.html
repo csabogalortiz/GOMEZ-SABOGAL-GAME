@@ -16,41 +16,57 @@
     <button id="re-start-button">Restart</button>
   </div> -->
 
+  <div class="container">
 
-  <div class="game-intro">
-    <img src="./images/Avocado_Mesa de trabajo 1.png" alt="" class="logo-img" />
-    <br />
-    <button id="start-button">StartGame</button>
-    <!-- <p>Use your arrows to jump!!</p> -->
-    <img src="./images/Flechas_Mesa de trabajo 1 copia.png" alt="" class="arrows-img" />
-    <img src="./images/ball.png" alt="" class="ball-img" />
+
+    <div class="row">
+      <div class="col-3 game-intro" style="display: flex;justify-content: center;align-items: center;">
+        <br />
+        <button id="start-button">StartGame</button>
+      </div>
+
+      <div class="col-6 game-canvas">
+
+        <div id="game-board" style="display: flex;justify-content: center;align-items: center;">
+          <div>
+
+            <img src="./images/StartBackground-01.jpg" alt="" id="instructions-img" />
+
+          </div>
+          <canvas id="myCanvas" style="display: none"></canvas>
+
+        </div>
+      </div>
+
+
+      <section class="col-3 counters" style="display: flex;justify-content: center;align-items: center;">
+        <div>
+          <div class="container">
+            <div class="row">
+              <div class="col-12 game-Score">
+                <p>Your Score! <span id="prueba"> 0 </span></p>
+              </div>
+              <div class="col-12 lives">
+                <p>Lives ♥ <span id="lives"> 3 </span></p>
+              </div>
+              <div class="col-12 high-Score">
+                <p>Your High Score! <span id="highScore"> 0 </span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    </div>
+    </section>
+    <script src="./js/character.js"></script>
+    <script src="./js/enemy.js"></script>
+    <script src="./js/coin.js"></script>
+    <script src="./js/obstacle.js"></script>
+    <script src="./js/background.js"></script>
+    <script src="./js/app.js"></script>
+    <script src="./js/index.js"></script>
+
   </div>
-
-
-  <div class="game-Score">
-    <p>Your Score! <span id="prueba"> 0 </span></p>
-
-  </div>
-  <div class="lives">
-    <p>Your Lives! <span id="lives"> 3 </span></p>
-  </div>
-
-  <div class="high-Score">
-    <p>Your High Score! <span id="highScore"> 0 </span></p>
-  </div>
-
-  <div id="game-board">
-    <canvas id="myCanvas"></canvas>
-  </div>
-
-
-  <script src="./js/character.js"></script>
-  <script src="./js/enemy.js"></script>
-  <script src="./js/coin.js"></script>
-  <script src="./js/obstacle.js"></script>
-  <script src="./js/background.js"></script>
-  <script src="./js/app.js"></script>
-  <script src="./js/index.js"></script>
 
 </body>
 
