@@ -4,7 +4,7 @@ class Character {
         this.ctx = ctx
         this.canvasSize = canvasSize
         this.characterSize = {
-            w: 60,
+            w: 80,
             h: 60
         }
         this.characterPos = {
@@ -20,7 +20,7 @@ class Character {
         this.gravity = 1
 
         // this.characterPhysics = { gravity: .4 }
-        this.characterImage = "./images/NINJAS-05.png"
+        this.characterImage = "./images/NinjasCharacterSprite-02.png"
         this.imageInstance = new Image()
         this.imageInstance.src = this.characterImage
 
@@ -28,8 +28,9 @@ class Character {
         this.left = false
         this.right = false
 
-        this.imageInstance.rows = 4;
-        this.imageInstance.rowsIndex = 3;
+        this.imageInstance.rows = 6;
+        this.imageInstance.rowsIndex = 0;
+        this.imageInstance.framesIndex = 0;
 
 
     }
@@ -38,10 +39,10 @@ class Character {
         this.ctx.drawImage(
 
             this.imageInstance,
+            this.imageInstance.rowsIndex * (this.imageInstance.width / this.imageInstance.rows) * this.imageInstance.framesIndex,
             0,
-            this.imageInstance.rowsIndex * (this.imageInstance.height / this.imageInstance.rows),
-            this.imageInstance.width,
-            this.imageInstance.height / this.imageInstance.rows,
+            this.imageInstance.width / this.imageInstance.rows,
+            this.imageInstance.height,
             this.characterPos.x,
             this.characterPos.y,
             this.characterSize.w,
@@ -59,8 +60,9 @@ class Character {
         if (framesCounter % 5 == 0) {
             this.imageInstance.framesIndex++;
         }
-        if (this.imageInstance.framesIndex >= this.imageInstance.frames) {
-            this.imageInstance.framesIndex = 0;
+        if (this.imageInstance.framesIndex >= this.imageInstance.rows) {
+            this.imageInstance.framesIndex = 0
+            this.imageInstance.rowsIndex = 0;
         }
     }
 
@@ -103,7 +105,6 @@ class Character {
                     case 'ArrowLeft':
                         this.left = false
                         // this.characterPos.x -= 50
-
                         break;
                 }
 

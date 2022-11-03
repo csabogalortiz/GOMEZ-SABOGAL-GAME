@@ -178,8 +178,9 @@ const app = {
                 this.character.characterPos.x <= element.obstaclePos.x + element.obstacleSize.w
 
             ) {
-
                 this.character.velCharacter.y *= -1
+                this.character.imageInstance.rowsIndex = 1
+
 
             }
         })
@@ -191,11 +192,9 @@ const app = {
                 this.character.characterPos.x < element.obstaclePos.x + element.obstacleSize.w
 
             ) {
-                // this.character.velCharacter.y *= -1
-                if (this.character.velCharacter.y > 0) {
-                    this.character.velCharacter.y *= -1
 
-                }
+                this.character.velCharacter.y *= -1
+                this.character.imageInstance.rowsIndex = 1
 
             }
         })
