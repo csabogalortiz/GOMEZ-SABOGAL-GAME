@@ -1,14 +1,16 @@
 body {
   padding: 0;
   text-align: center;
-  background-image: url(./../images/FondoNinja.png);
+  background-image: url(./../images/ultimo.png);
   background-repeat: no-repeat;
   background-size: cover;
   height: 600px
 }
 
 .game-intro {
-  /* float: left; */
+  color: #fff;
+  font-weight: bolder;
+  margin-top: 40px;
   padding: 0% 10%;
 }
 
@@ -27,8 +29,9 @@ body {
 
 body button {
   font-size: 25px;
-  /* background-color: #F5D020; */
-  color: #fff;
+  background-color: #F5D020;
+  color: black;
+  font-weight: bolder;
   padding: 20px 40px;
   border: 0;
   box-shadow: 0;
@@ -56,7 +59,6 @@ body button {
 }
 
 #game-board {
-  /* float: left; */
   padding: 20px 0px;
 }
 
@@ -65,8 +67,6 @@ body button {
 }
 
 .high-Score {
-  /* background-color: #F5D020; */
-  /* float: right; */
   margin-right: 40px;
   margin-top: 10%;
   font-size: 25px;
@@ -80,9 +80,6 @@ body button {
 
 
 .game-Score {
-  /* background-image: url(./images/FondoNinja.png); */
-  /* background-color: #242D49; */
-  /* float: right; */
   margin-right: 0%;
   margin-top: 20%;
   border: 10px;
@@ -90,8 +87,6 @@ body button {
 }
 
 .lives {
-  /* background-color: #F5D020; */
-  /* float: right; */
   margin-right: 50px;
   font-size: 25px;
   color: white;
@@ -105,13 +100,11 @@ body button {
 
   font-family: "Verdana";
   color: white;
-  /* float: right; */
   margin-right: 50px;
   margin-top: 30%;
   font-size: 25px;
   padding: 10px;
   border-radius: 15px;
-  /* background-color: rgb(57, 43, 73); */
   box-shadow: 5px;
   font-weight: bolder;
 }
@@ -120,4 +113,11 @@ body button {
 #Score {
   font-size: 25px;
   color: white
+}
+
+
+#jump-img {
+  width: 300px;
+
+
 }

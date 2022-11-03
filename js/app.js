@@ -117,7 +117,6 @@ const app = {
 
             this.clearAll()
             this.drawAll()
-            // this.restart()
             this.scoreCount()
             this.livesCount()
             if (this.character.right) this.character.moveRight()
@@ -125,16 +124,16 @@ const app = {
 
 
             this.framesCounter++
-            if (this.framesCounter % 20 === 0) {
+            if (this.framesCounter % 10 === 0) {
                 this.createObstacles()
             }
-            if (this.framesCounter % 70 === 0) {
+            if (this.framesCounter % 50 === 0) {
                 this.createCoins()
             }
-            if (this.framesCounter % 80 === 0) {
+            if (this.framesCounter % 70 === 0) {
                 this.createBadObstacles()
             }
-            if (this.framesCounter % 100 === 0) {
+            if (this.framesCounter % 60 === 0) {
                 this.createBadEnemys()
             }
             console.log(this.character.characterPos.y >= this.canvasSize.h)
@@ -267,8 +266,6 @@ const app = {
 
 
     gameOver() {
-        // console.log(this.character.characterPos.y)
-        // if (this.character.characterPos.y >= this.canvasSize.h) {
         clearInterval(this.interval)
         this.ctx.fillStyle = '#06070A'
         this.ctx.fillRect(0, 0, 500, 900)
@@ -293,15 +290,6 @@ const app = {
 
         this.highScore()
 
-
-
-
-        // alert("alerta")
-        // this.interval()
-        // clearInterval(this.interval)
-
-
-        // }
     },
 
     scoreCount() {
@@ -318,7 +306,6 @@ const app = {
         let stringLives = this.lives.toString()
 
         const livescount = document.querySelector("#lives")
-        // console.log(`tus vidas son ${livescount.innerText}`)
         livescount.innerText = stringLives
 
         if (this.lives === 0) {

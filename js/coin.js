@@ -28,6 +28,7 @@ class Coin {
     }
 
     draw(framesCounter) {
+
         this.ctx.drawImage(
             this.imageInstance,
             this.imageInstance.framesIndex * (this.imageInstance.width / this.imageInstance.frames),
@@ -44,7 +45,7 @@ class Coin {
 
     animate(framesCounter) {
 
-        if (framesCounter % 12 == 0) {
+        if (framesCounter % 2 == 0) {
             this.imageInstance.framesIndex++;
         }
 
@@ -57,7 +58,3 @@ class Coin {
         this.coinPos.y += 5
     }
 }
-
-
-// *************
-

@@ -11,7 +11,7 @@ class Character {
             x: 240,
             y: this.canvasSize.h - this.characterSize.h - 600
         }
-        // this.posFloor = 100
+
 
         this.velCharacter = {
             x: 10,
@@ -19,7 +19,7 @@ class Character {
         }
         this.gravity = 1
 
-        // this.characterPhysics = { gravity: .4 }
+
         this.characterImage = "./images/NinjasCharacterSprite-02.png"
         this.imageInstance = new Image()
         this.imageInstance.src = this.characterImage
@@ -82,12 +82,9 @@ class Character {
                     break;
                 case 'ArrowLeft':
                     this.left = true
-                    // this.characterPos.x -= 50
 
                     break;
-                // case 'ArrowUp':
-                //     this.characterPos.y -= 50
-                //     break;
+
 
                 case 'r':
 
@@ -99,12 +96,9 @@ class Character {
                 switch (event.key) {
                     case 'ArrowRight':
                         this.right = false
-
-                        // return false
                         break;
                     case 'ArrowLeft':
                         this.left = false
-                        // this.characterPos.x -= 50
                         break;
                 }
 
@@ -123,7 +117,7 @@ class Character {
     gameGravity() {
         this.velCharacter.y += this.gravity
         this.characterPos.y += this.velCharacter.y
-        // animate()
+
     }
 
 }
