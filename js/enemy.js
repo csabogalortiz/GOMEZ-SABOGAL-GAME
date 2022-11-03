@@ -9,14 +9,15 @@ class Enemy {
         this.enemyPos = {
             x: enemyPosX,
             y: enemyPosY
-
         }
 
         this.enemySpeed = enemySpeed
         this.canvasSize = canvasSize
 
-        this.enemyImage = "./images/bad.png"
+        this.enemyImage = "./images/Suriken.png"
         this.imageInstance = undefined
+
+
         this.init()
 
     }
@@ -24,16 +25,35 @@ class Enemy {
     init() {
         this.imageInstance = new Image()
         this.imageInstance.src = this.enemyImage
+        this.imageInstance.frames = 8;
+        this.imageInstance.framesIndex = 0;
     }
 
-    draw() {
+    draw(framesCounter) {
         this.ctx.drawImage(
             this.imageInstance,
+            this.imageInstance.framesIndex * (this.imageInstance.width / this.imageInstance.frames),
+            0,
+            this.imageInstance.width / this.imageInstance.frames,
+            this.imageInstance.height,
             this.enemyPos.x,
             this.enemyPos.y,
             this.enemySize.w,
             this.enemySize.h
         )
+
+        this.animate(framesCounter)
+    }
+
+    animate(framesCounter) {
+
+        if (framesCounter % 2 == 0) {
+            this.imageInstance.framesIndex++;
+        }
+
+        if (this.imageInstance.framesIndex >= this.imageInstance.frames) {
+            this.imageInstance.framesIndex = 0;
+        }
     }
 
     move() {

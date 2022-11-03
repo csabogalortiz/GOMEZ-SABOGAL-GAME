@@ -102,6 +102,7 @@ const app = {
         this.badEnemys.push(
             new Enemy(this.ctx, badPosX + 5, 40, 100, 20, 60, this.canvasSize),
         )
+        console.log(this.badEnemys)
 
     },
 
@@ -161,7 +162,7 @@ const app = {
         this.coins.forEach(coin => coin.draw())
         this.coins.forEach(coin => coin.move())
 
-        this.badEnemys.forEach(enemy => enemy.draw())
+        this.badEnemys.forEach(enemy => enemy.draw(this.framesCounter))
         this.badEnemys.forEach(enemy => enemy.move())
 
         this.character.draw(this.framesCounter)
