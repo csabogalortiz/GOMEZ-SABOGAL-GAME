@@ -11,7 +11,7 @@ class Background {
             x: 0,
             y: 0
         }
-        this.backgroundImage = "./images/paper.jpeg"
+        this.backgroundImage = "./images/background-01.jpg"
         this.imageInstance = undefined
 
         this.velY = 3

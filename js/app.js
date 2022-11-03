@@ -69,8 +69,6 @@ const app = {
         let posX = this.randomPosition()
         // console.log(posX)
         this.obstacles.push(
-            // new Obstacle(this.ctx, 100, 300, 150, 40, 200, 26, 0, this.canvasSize),
-            // new Obstacle(this.ctx, posX, 600, 100, 20, 60, this.canvasSize),
             new Obstacle(this.ctx, posX, 0, 100, 20, 60, this.canvasSize),
         )
     },
@@ -79,7 +77,6 @@ const app = {
         this.initialObstacles.push(
             new Obstacle(this.ctx, 240, 400, 100, 20, 60, this.canvasSize),
             new Obstacle(this.ctx, 50, 300, 100, 20, 60, this.canvasSize),
-            // new Obstacle(this.ctx, 100, 200, 400, 20, 60, this.canvasSize),
 
         )
 
@@ -167,7 +164,7 @@ const app = {
         this.badEnemys.forEach(enemy => enemy.draw())
         this.badEnemys.forEach(enemy => enemy.move())
 
-        this.character.draw()
+        this.character.draw(this.framesCounter)
         this.checkCollision()
 
     },
@@ -179,11 +176,6 @@ const app = {
                 this.character.characterPos.y + this.character.characterSize.h + this.character.velCharacter.y >= element.obstaclePos.y &&
                 this.character.characterPos.x + this.character.characterSize.w >= element.obstaclePos.x &&
                 this.character.characterPos.x <= element.obstaclePos.x + element.obstacleSize.w
-
-
-                // this.character.characterPos.y < element.obstaclePos.y + element.obstacleSize.h &&
-
-                // this.character.characterPos.x < element.obstaclePos.x + element.obstacleSize.w
 
             ) {
 
