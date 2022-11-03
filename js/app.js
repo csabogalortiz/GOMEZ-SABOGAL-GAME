@@ -93,7 +93,7 @@ const app = {
     createCoins() {
         let coinPosX = this.randomPosition()
         this.coins.push(
-            new Coin(this.ctx, coinPosX + 1, 0, 100, 20, 60, this.canvasSize),
+            new Coin(this.ctx, coinPosX + 5, 0, 100, 20, 60, this.canvasSize),
         )
 
     },
