@@ -28,23 +28,20 @@ class Character {
         this.left = false
         this.right = false
 
-        this.imageInstance.frames = 1;
-        this.imageInstance.framesIndex = 0;
+        this.imageInstance.rows = 4;
+        this.imageInstance.rowsIndex = 3;
 
 
     }
-
 
     draw(framesCounter) {
         this.ctx.drawImage(
 
             this.imageInstance,
             0,
-            this.imageInstance.framesIndex * (this.imageInstance.height / this.imageInstance.frames),
+            this.imageInstance.rowsIndex * (this.imageInstance.height / this.imageInstance.rows),
             this.imageInstance.width,
-            this.imageInstance.height / this.imageInstance.frames,
-
-
+            this.imageInstance.height / this.imageInstance.rows,
             this.characterPos.x,
             this.characterPos.y,
             this.characterSize.w,
@@ -123,10 +120,9 @@ class Character {
     }
 
     gameGravity() {
-
         this.velCharacter.y += this.gravity
         this.characterPos.y += this.velCharacter.y
-        animate()
+        // animate()
     }
 
 }
