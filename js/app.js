@@ -20,6 +20,7 @@ const app = {
     lives: 3,
     interval: undefined,
     sound: new Audio('./sounds/very-lush-and-swag-loop-74140.mp3'),
+    soundGameOVer: new Audio('./sounds/mixkit-retro-arcade-game-over-470.wav'),
 
 
 
@@ -278,12 +279,15 @@ const app = {
             this.canvasSize.h / 2
         )
 
+        this.sound.pause()
+        this.soundGameOVer.play()
+
 
         this.ctx.textAlign = "center",
             this.ctx.fillStyle = "white",
-            this.ctx.font = "40px helvetica"
+            this.ctx.font = "30px helvetica"
         this.ctx.fillText(
-            "Press r to restart",
+            "PRESS R TO RESTART",
             this.canvasSize.w / 2,
             (this.canvasSize.h / 2) + 80
         )
