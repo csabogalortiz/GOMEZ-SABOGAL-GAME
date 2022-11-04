@@ -1,7 +1,7 @@
 body {
   padding: 0;
   text-align: center;
-  background-image: url(./../images/ultimo.png);
+  background-image: url(./../images/OurBackground.png);
   background-repeat: no-repeat;
   background-size: cover;
   height: 600px
@@ -120,4 +120,12 @@ body button {
   width: 300px;
 
 
+}
+
+#heart {
+  color: red
+}
+
+#highScore {
+  color: #F5D020;
 }

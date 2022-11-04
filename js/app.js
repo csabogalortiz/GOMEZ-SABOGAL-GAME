@@ -40,8 +40,8 @@ const app = {
         this.createCoins()
         this.scoreCount()
         this.livesCount()
-        this.sound.play()
-        // this.restart()
+        this.sound.loop = true,
+            this.sound.play()
         this.start()
     },
 
@@ -66,10 +66,8 @@ const app = {
         this.background = new Background(this.ctx, this.canvasSize)
     },
 
-    // constructor(ctx, obstaclePosX, obstaclePosY, obstacleSizeW, obstacleSizeH, obstacleSpeed, canvasSize) {
     createObstacles() {
         let posX = this.randomPosition()
-        // console.log(posX)
         this.obstacles.push(
             new Obstacle(this.ctx, posX, 0, 100, 20, 60, this.canvasSize),
         )
@@ -94,7 +92,7 @@ const app = {
     createCoins() {
         let coinPosX = this.randomPosition()
         this.coins.push(
-            new Coin(this.ctx, coinPosX + 5, 0, 100, 20, 60, this.canvasSize),
+            new Coin(this.ctx, coinPosX, 0, 100, 20, 60, this.canvasSize),
         )
 
     },
@@ -125,13 +123,13 @@ const app = {
 
 
             this.framesCounter++
-            if (this.framesCounter % 10 === 0) {
+            if (this.framesCounter % 15 === 0) {
                 this.createObstacles()
             }
-            if (this.framesCounter % 50 === 0) {
+            if (this.framesCounter % 40 === 0) {
                 this.createCoins()
             }
-            if (this.framesCounter % 70 === 0) {
+            if (this.framesCounter % 35 === 0) {
                 this.createBadObstacles()
             }
             if (this.framesCounter % 60 === 0) {
@@ -268,7 +266,7 @@ const app = {
 
     gameOver() {
         clearInterval(this.interval)
-        this.ctx.fillStyle = '#06070A'
+        this.ctx.fillStyle = '#11131C'
         this.ctx.fillRect(0, 0, 500, 900)
         this.ctx.textAlign = "center",
             this.ctx.fillStyle = "white",
@@ -285,7 +283,7 @@ const app = {
 
         this.ctx.textAlign = "center",
             this.ctx.fillStyle = "white",
-            this.ctx.font = "30px helvetica"
+            this.ctx.font = "20px helvetica"
         this.ctx.fillText(
             "PRESS R TO RESTART",
             this.canvasSize.w / 2,
